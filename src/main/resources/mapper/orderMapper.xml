@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.orderMapper">
+<!--    查询订单-->
+    <select id="queryOrderByUserPhone" resultType="com.example.demo.pojo.Order" parameterType="string">
+        select
+            *
+        from
+            takeout_order
+        where
+            user_phone = #{user_phone} and huoge_id is null limit 0,1
+    </select>
+
+    <select id="queryUserPhoneByOrder" resultType="string" parameterType="integer">
+        select
+            user_phone
+        from
+            takeout_order
+        where
+            id = #{id}
+    </select>
+</mapper>

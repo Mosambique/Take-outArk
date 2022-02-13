@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.deliverymanMapper">
+<!--查找外卖员-->
+    <select id="queryDeliverymanByDid" resultType="com.example.demo.pojo.deliveryman" parameterType="string">
+        select
+            *
+        from
+            takeout_deliverman
+        where
+            id = #{Did}
+    </select>
+<!--添加外卖员-->
+    <insert id="insertDeliveryman" parameterType="com.example.demo.pojo.deliveryman">
+        insert into
+            takeout_deliverman
+            (id,phone_number,name,wx_id)
+        values
+            (#{id},#{phone_number},#{name},#{wx_id})
+    </insert>
+<!--修改外卖员-->
+    <update id="updateDeliveryman" parameterType="com.example.demo.pojo.deliveryman">
+        update
+            takeout_deliverman
+        set
+            id = #{id},phone_number = #{phone_number},name = #{name},wx_id=#{wx_id}
+        where
+            id = #{id}
+    </update>
+<!--删除外卖员-->
+    <delete id="deleteDeliveryman" parameterType="string">
+        delete from
+            takeout_deliverman
+        where
+            id = #{id}
+    </delete>
+</mapper>

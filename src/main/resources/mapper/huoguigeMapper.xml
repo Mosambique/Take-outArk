@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.huoguigeMapper">
+    <!-- 修改货柜格状态-->
+    <update id="updateHuoguige" parameterType="com.example.demo.pojo.huoguige">
+     update
+           takeout_huo_gui_ge
+     set
+           takeout_time = #{time},order_id = #{order_id}
+     where
+           id = #{id} AND container_id = #{container_id}
+ 
+    </update>
+    <!--悲观锁-->
+    <select id="getHuoguige_bgs" parameterType="integer" resultType="com.example.demo.pojo.huoguige">
+        select
+            *
+        from
+            takeout_huo_gui_ge
+        where
+            id = #{id} AND container_id = #{container_id} for update
+    </select>
+    <!--查询货柜格-->
+    <select id="queryHuoguige" parameterType="integer" resultType="integer">
+     select
+            order_id
+     from
+          takeout_huo_gui_ge
+     where
+           container_id = #{container_id} for update
+    </select>
+</mapper>
